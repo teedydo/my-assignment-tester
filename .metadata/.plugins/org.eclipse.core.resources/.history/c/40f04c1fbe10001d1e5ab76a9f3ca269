@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-07-31T17:46:13 ICT" name="Test suite" finished-at="2022-07-31T17:46:34 ICT" duration-ms="20931">
+    <groups>
+    </groups>
+    <test started-at="2022-07-31T17:46:13 ICT" name="Test" finished-at="2022-07-31T17:46:34 ICT" duration-ms="20931">
+      <class name="homepage.SearchCityAndVerifyCurrentDate">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@194bcebf]" started-at="2022-07-31T17:46:13 ICT" name="setUp" finished-at="2022-07-31T17:46:29 ICT" duration-ms="15937" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="accessToURL()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@194bcebf]" started-at="2022-07-31T17:46:29 ICT" name="accessToURL" finished-at="2022-07-31T17:46:29 ICT" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- accessToURL -->
+        <test-method signature="test01_SearchCityAndVerfiyCurrentDate()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@194bcebf]" started-at="2022-07-31T17:46:29 ICT" name="test01_SearchCityAndVerfiyCurrentDate" finished-at="2022-07-31T17:46:32 ICT" duration-ms="3831" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test01_SearchCityAndVerfiyCurrentDate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@194bcebf]" started-at="2022-07-31T17:46:32 ICT" name="tearDown" finished-at="2022-07-31T17:46:34 ICT" duration-ms="1107" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- homepage.SearchCityAndVerifyCurrentDate -->
+    </test> <!-- Test -->
+  </suite> <!-- Test suite -->
+</testng-results>

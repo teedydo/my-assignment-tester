@@ -1,0 +1,40 @@
+package utilities;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+public class WebDriverBuilder {
+
+	public WebDriverType type;
+	public WebDriver webDriver;
+	public static enum WebDriverType {
+		FIREFOX,
+		CHROME
+	};
+	
+	public static WebDriver createWebDriver (final WebDriverType type) {
+		ConfigurationData.loadProperties();
+		switch (type) {
+		case FIREFOX:
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			System.setProperty("webdriver.gecko.driver", "webDrivers\\geckodriver.exe");
+			DesiredCapabilities ffCap = new DesiredCapabilities();
+			ffCap.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+			return new FirefoxDriver(firefoxOptions);
+		case CHROME:
+			ChromeOptions chromeOptions = new ChromeOptions();
+			System.setProperty("webdriver.gecko.driver", "webDrivers\\geckodriver.exe");
+			DesiredCapabilities chromeCap = new DesiredCapabilities();
+			chromeCap.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+			return new ChromeDriver(chromeOptions);
+		default:
+			break;
+		}
+		return null;
+	}
+}

@@ -1,0 +1,51 @@
+package homepage;
+
+import static org.junit.Assert.assertTrue;
+
+import org.assertj.core.api.SoftAssertions;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import org.testng.annotations.Listeners;
+import PageFactory.MyPageFactory;
+import utilities.AbstractTest;
+import utilities.MyDateUtils;
+
+@Listeners(utilities.runner.ListenerTest.class)
+public class SearchCityAndVerifyCurrentDate extends AbstractTest{
+	private MyPageFactory page;
+	
+	@BeforeClass
+	public void accessToURL() {
+		page = new MyPageFactory(this.driver);
+	}
+	
+	@DataProvider(name = "cityName")
+	public Object[][] cityName() {
+	    return new Object [][] {{"Ho Chi Minh", "_ValidCity"}, {"Ha Noi", "_ValidCity"}, {"No city", "_InvalidCity"}};
+	}
+	
+	@Test (dataProvider = "cityName")
+	public void test01_SearchCityAndVerfiyCurrentDate(String cityName, String testName, ITestContext context) {
+		context.setAttribute("testName", context.getAttribute("testMethodName") + "_" + cityName + "_" + testName);
+		// Search for City in search text
+		this.page.getHomepage().searchCity(cityName);
+		
+		// Select first option displayed
+		this.page.getHomepage().selectResult(cityName);
+		
+		// Verify: City name displayed
+		assertTrue("Verify: Navigated to City Details page - " + cityName, 
+				this.page.getCityDetailsPage().isCityNameDisplayed(cityName));
+		
+		// Verify: City name displayed
+		String currentDate = MyDateUtils.getCurrentDateWithFormat(this.page.getCityDetailsPage().DATE_FORMAT_IN_DETAILS_PAGE);
+		SoftAssertions softAssertions = new SoftAssertions();
+		softAssertions.assertThat(this.page.getCityDetailsPage().getCurrentDateDisplayed()).as
+		("Verify: Current date is match current date for user local", 
+				this.page.getCityDetailsPage().getCurrentDateDisplayed().equals(currentDate));
+		softAssertions.assertAll();
+	}
+}

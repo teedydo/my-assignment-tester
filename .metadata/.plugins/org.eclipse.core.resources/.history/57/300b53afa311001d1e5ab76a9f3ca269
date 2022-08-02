@@ -1,0 +1,95 @@
+package utilities.runner;
+
+import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.util.Arrays;
+
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+import org.apache.log4j.LogManager;
+
+import org.testng.ITestContext ;		
+import org.testng.ITestListener ;		
+import org.testng.ITestResult ;
+
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import ExtentReports.ExtentManager;
+import ExtentReports.ExtentTestManager;
+import utilities.AbstractTest;
+import utilities.MyFileUtils;		
+
+public class ListenerTest extends AbstractTest implements ITestListener						
+{		
+	Logger log;
+	String testName;
+	String testMethodName;
+	ExtentTest logger;
+	@Override		
+	public void onFinish(ITestContext arg0) {	
+		log.info("===== Test FINISHED: " + testName + " =====");
+		ExtentManager.getReporter().endTest(ExtentTestManager.getTest());
+		ExtentManager.getReporter().flush();
+	}		
+
+	@Override		
+	public void onStart(ITestContext context) {	
+		this.testName = context.getCurrentXmlTest().getClasses().get(0).getName();
+		this.log = LogManager.getLogger(testName);
+		log.info("===== Test STARTED: " + testName + " =====");
+		context.setAttribute("webDriver", this.driver);
+	}		
+
+	@Override		
+	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {					
+		// TODO Auto-generated method stub				
+
+	}		
+
+	@Override		
+	public void onTestFailure(ITestResult result) {		
+        WebDriver driver = (WebDriver) context.getTestContext().getAttribute("webDriver");	
+		testMethodName = result.getMethod().getMethodName();	
+		log.info("===== Test FAILED: " + testMethodName + " =====");
+		logger = ExtentManager.getReporter().startTest(testName);
+		takeScreenshot(driver);
+		logger.log(LogStatus.FAIL, logger.addScreenCapture(getLatestFile(MyFileUtils.getUserPath() + SCREENSHOT_PATH).getAbsolutePath()));
+	}		
+
+	@Override		
+	public void onTestSkipped(ITestResult context) {
+        this.testName = context.getTestContext().getAttribute("testName").toString();		
+		log.info("===== Test SKIPPED: " + testMethodName + " =====");
+		logger = ExtentManager.getReporter().startTest(testName);
+		logger.log(LogStatus.SKIP, logger.addScreenCapture(getLatestFile(MyFileUtils.getUserPath() + SCREENSHOT_PATH).getAbsolutePath()));
+	}		
+
+	@Override		
+	public void onTestStart(ITestResult result) {		
+		testMethodName = result.getMethod().getMethodName();
+		result.setAttribute("testMethodName", testMethodName);
+		log.info("===== Test STARING: " + testMethodName + " =====");
+	}		
+
+	@Override		
+	public void onTestSuccess(ITestResult result) {
+		testMethodName = result.getMethod().getMethodName();	
+		log.info("===== Test PASSED: " + testMethodName + " =====");
+		logger = ExtentManager.getReporter().startTest(testName);
+		logger.log(LogStatus.PASS, logger.addScreenCapture(getLatestFile(MyFileUtils.getUserPath() + SCREENSHOT_PATH).getAbsolutePath()));
+	}	
+	
+	private File getLatestFile(String filePath) {
+		File dir = new File(filePath);
+		File[] files = dir.listFiles();
+		if (files == null || files.length == 0) {
+			return null;
+		}
+	    if (files.length > 0) {
+	        Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+	    }
+	    return files[0];
+	}
+}		

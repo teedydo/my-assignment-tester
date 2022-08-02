@@ -1,0 +1,39 @@
+package utilities;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+public class WebDriverCustom {
+	private final WebDriver driver;
+
+	public WebDriverCustom(WebDriver driver) {
+		this.driver = driver;
+	}
+
+	public WebDriver getWebDriver() {
+		return this.driver;
+	}
+
+	public WebElement getPresenceWebElement(String xpath) {
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(30L))
+				.pollingEvery(Duration.ofSeconds(1L))
+				.ignoring(NoSuchElementException.class);
+		return (WebElement) wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+	}
+	
+	public WebElement getClickableWebElement(String xpath) {
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(30L))
+				.pollingEvery(Duration.ofSeconds(1L))
+				.ignoring(NoSuchElementException.class);
+		return (WebElement) wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+	}
+}

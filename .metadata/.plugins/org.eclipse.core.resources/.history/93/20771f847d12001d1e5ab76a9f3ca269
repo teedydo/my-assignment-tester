@@ -1,0 +1,7 @@
+package LocatorConstant;
+
+public class HomePageConstant {
+
+	// Xpath for loading dialog
+	public static String dlgLoading = "//div[@aria-label='Loading']";
+}

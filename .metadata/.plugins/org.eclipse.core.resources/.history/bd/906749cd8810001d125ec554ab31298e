@@ -1,0 +1,21 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+
+public class PageFactory {
+	public CityDetailsPage cityDetailsPage;
+	public Homepage homepage;
+	public WebDriver driver;
+	
+	public PageFactory (WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	public CityDetailsPage getCityDetailsPage() {
+		return new CityDetailsPage(driver);
+	}
+	
+	public Homepage getHomepage() {
+		return new Homepage(driver);
+	}
+}

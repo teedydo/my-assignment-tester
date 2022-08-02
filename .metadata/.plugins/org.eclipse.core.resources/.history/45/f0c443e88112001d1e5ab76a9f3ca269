@@ -1,0 +1,61 @@
+package utilities;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+public class WebDriverBuilder {
+
+	public WebDriverType type;
+	public WebDriver webDriver;
+	public static enum WebDriverType {
+		FIREFOX,
+		CHROME
+	};
+	
+	public static WebDriver createWebDriver (final WebDriverType type) {
+		ConfigurationData.loadProperties();
+		switch (type) {
+		case FIREFOX:
+			// Run by Firefox: Disable location
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			System.setProperty("webdriver.gecko.driver", MyFileUtils.getUserPath() + "src\\main\\java\\webDrivers\\geckodriver.exe");
+			DesiredCapabilities ffCap = new DesiredCapabilities();
+			FirefoxProfile geoDisabled = new FirefoxProfile();
+			geoDisabled.setPreference("geo.enabled", false);
+			geoDisabled.setPreference("geo.provider.use_corelocation", false);
+			geoDisabled.setPreference("geo.prompt.testing", false);
+			geoDisabled.setPreference("geo.prompt.testing.allow", false);
+			firefoxOptions.setProfile(geoDisabled);
+			ffCap.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+			return new FirefoxDriver(firefoxOptions);
+		case CHROME:
+			// Run by Chrome: Headless mode and allow location
+			ChromeOptions chromeOptions = new ChromeOptions();
+			System.setProperty("webdriver.chrome.driver", MyFileUtils.getUserPath() + "src\\main\\javawebDrivers\\chromedriver.exe");
+			chromeOptions.addArguments("--headless");
+			DesiredCapabilities chromeCap = new DesiredCapabilities();
+			chromeCap.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+			chromeOptions.merge(chromeCap);
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			Map<String, Object> profile = new HashMap<String, Object>();
+			prefs.put("googlegeolocationaccess.enabled", true);
+			prefs.put("profile.default_content_setting_values.geolocation", 1);
+			prefs.put("profile.default_content_setting_values.notifications", 1);
+			prefs.put("profile.managed_default_content_settings", 1);
+			chromeOptions.setExperimentalOption("prefs", prefs);
+			return new ChromeDriver(chromeOptions);
+		default:
+			break;
+		}
+		return null;
+	}
+}

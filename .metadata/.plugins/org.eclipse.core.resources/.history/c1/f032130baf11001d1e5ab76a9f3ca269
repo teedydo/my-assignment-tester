@@ -1,0 +1,38 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeMethod;
+
+import cityDetailsPage.CityDetailsPageConstant;
+import utilities.WebDriverCustom;
+
+public class CityDetailsPage {
+	private WebDriver driver;
+	private WebDriverCustom driverCustom;
+	public String DATE_FORMAT_IN_DETAILS_PAGE = "MMM dd";
+	public CityDetailsPage (WebDriver driver) {
+		this.driver = driver;
+		this.driverCustom = new WebDriverCustom(driver);
+	}
+	
+	@BeforeMethod
+	private void waitForDetailsPageLoaded() {
+		this.driverCustom.isElementVisible("//div[@class='map-section']");
+	}
+	
+	public boolean isCityNameDisplayed(String cityName) {
+		return this.driverCustom.isElementVisible(String.format(CityDetailsPageConstant.lblCityName, "cityName"));
+	}
+	
+	public String getCurrentDateDisplayed() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentDate).getText();
+	}
+	
+	public String getCurrentTemperature() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentDate).getText();
+	}
+	
+	public String getCurrentTemp() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentTemp).getText();
+	}
+}

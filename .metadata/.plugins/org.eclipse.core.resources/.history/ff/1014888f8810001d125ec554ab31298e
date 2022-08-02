@@ -1,0 +1,13 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+
+public class PageFactory {
+	public AbstractMethod_CityDetailsPage cityDetailsPage;
+	public AbstractMethod_Homepage homepage;
+	public WebDriver driver;
+	
+	public PageFactory (WebDriver driver) {
+		this
+	}
+}

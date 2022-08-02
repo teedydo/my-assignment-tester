@@ -1,0 +1,28 @@
+package utilities;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+
+import org.openqa.selenium.PrintsPage;
+
+import com.google.common.io.Files;
+
+public class ConfigurationData {
+	public static String URL = "";
+	
+	public static void loadProperties() {
+		String projectPropertiesFileName = "project.properties";
+		Path p = Paths.get(projectPropertiesFileName);
+		try {
+			Properties prop = new Properties();
+			FileReader reader = new FileReader(projectPropertiesFileName);
+			BufferedReader br = new BufferedReader(reader);
+			prop.load(br);
+			URL = prop.getProperty("url");
+		}
+		
+	}
+}

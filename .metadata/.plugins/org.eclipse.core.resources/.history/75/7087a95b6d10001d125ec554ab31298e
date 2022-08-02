@@ -1,0 +1,15 @@
+package utilities;
+
+import org.openqa.selenium.WebDriver;
+
+public class WebDriverCustom {
+	private final WebDriver driver;
+	
+	public WebDriverCustom(WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	public WebDriver getWebDriver() {
+		return this.driver;
+	}
+}

@@ -1,0 +1,9 @@
+package ExtentReports;
+
+import java.util.Map;
+
+import com.relevantcodes.extentreports.ExtentTest;
+
+public class ExtentTestManager {
+	static Map<Integer, ExtentTest> extentTestMap = new HashMap<Integer, ExtentTest>();
+}

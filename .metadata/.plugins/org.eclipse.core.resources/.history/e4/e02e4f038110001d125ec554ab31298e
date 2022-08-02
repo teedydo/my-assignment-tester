@@ -1,0 +1,5 @@
+package cityDetailsPage;
+
+public class CityDetailsPageConstant {
+	public static String lblCityName = "//div[@data-v-3e6e9f12]//h2";
+}

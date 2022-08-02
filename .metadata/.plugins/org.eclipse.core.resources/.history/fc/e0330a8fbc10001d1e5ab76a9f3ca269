@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-07-31T17:05:18 ICT" name="Test suite" finished-at="2022-07-31T17:05:40 ICT" duration-ms="22112">
+    <groups>
+    </groups>
+    <test started-at="2022-07-31T17:05:18 ICT" name="Test" finished-at="2022-07-31T17:05:40 ICT" duration-ms="22112">
+      <class name="homepage.SearchCityAndVerifyCurrentDate">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@f0da945]" started-at="2022-07-31T17:05:18 ICT" name="setUp" finished-at="2022-07-31T17:05:35 ICT" duration-ms="16560" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="accessToURL()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@f0da945]" started-at="2022-07-31T17:05:35 ICT" name="accessToURL" finished-at="2022-07-31T17:05:35 ICT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- accessToURL -->
+        <test-method signature="test01_SearchCityAndVerfiyCurrentDate()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@f0da945]" started-at="2022-07-31T17:05:35 ICT" name="test01_SearchCityAndVerfiyCurrentDate" finished-at="2022-07-31T17:05:39 ICT" duration-ms="4318" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test01_SearchCityAndVerfiyCurrentDate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:homepage.SearchCityAndVerifyCurrentDate@f0da945]" started-at="2022-07-31T17:05:39 ICT" name="tearDown" finished-at="2022-07-31T17:05:40 ICT" duration-ms="1160" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- homepage.SearchCityAndVerifyCurrentDate -->
+    </test> <!-- Test -->
+  </suite> <!-- Test suite -->
+</testng-results>

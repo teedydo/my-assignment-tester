@@ -1,0 +1,18 @@
+package utilities;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateUtil {
+	private DateUtil() {
+		// do nothing
+	}
+	
+	public static String getCurrentDateWithFormat(String format) {
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat(format);
+		return  dateFormat.format(date);
+	}
+
+}

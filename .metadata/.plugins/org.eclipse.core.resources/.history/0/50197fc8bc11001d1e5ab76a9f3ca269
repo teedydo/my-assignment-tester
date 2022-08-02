@@ -1,0 +1,56 @@
+package PageFactory;
+
+import org.openqa.selenium.WebDriver;
+
+import cityDetailsPage.CityDetailsPageConstant;
+import utilities.AbstractTest;
+import utilities.WebDriverCustom;
+
+public class CityDetailsPage extends AbstractTest{
+	private WebDriver driver;
+	private WebDriverCustom driverCustom;
+	public String DATE_FORMAT_IN_DETAILS_PAGE = "MMM dd";
+	
+	public CityDetailsPage (WebDriver driver) {
+		this.driver = driver;
+		this.driverCustom = new WebDriverCustom(driver);
+	}
+	
+	protected void waitForPageLoadedCompleted() {
+		this.driverCustom.isElementVisible("//div[@class='map-section']");
+	}
+	
+	public boolean isCityNameDisplayed(String cityName) {
+		return this.driverCustom.isElementVisible(String.format(CityDetailsPageConstant.lblCityName, "cityName"));
+	}
+	
+	public String getCurrentDateDisplayed() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentDate).getText();
+	}
+	
+	public String getCurrentTemperature() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentDate).getText();
+	}
+	
+	public String getCurrentTemp() {
+		return this.driverCustom.getVisibleWebElement(CityDetailsPageConstant.lblCurrentTemp).getText();
+	}
+	
+	public boolean verifyTextDisplayWithSelectedMeasurement(String text, boolean isDisplayedInC) {
+		if (isDisplayedInC) {
+			return text.matches("\\d+°c(?:\\s*-\\d+°c)?");
+		}
+		else {
+			return text.matches("\\d+°F(?:\\s*-\\d+°F)?");
+		}
+	}
+	
+	public void selectCTemperatureMeasurements(boolean isDisplayedInC) {
+		if (isDisplayedInC) {
+			this.driverCustom.getClickableWebElement(CityDetailsPageConstant.optCMessure).click();
+		}
+		else {
+			this.driverCustom.getClickableWebElement(CityDetailsPageConstant.optFMessure).click();
+		}
+	}
+}

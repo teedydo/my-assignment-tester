@@ -1,0 +1,19 @@
+package CustomReport;
+
+import org.junit.runner.notification.RunListener;
+import org.testng.ITestContext;
+
+public class CustomListener extends RunListener{
+	public void onFinish(ITestContext testContext) {
+        LOGGER.info("PASSED TEST CASES");
+        testContext.getPassedTests().getAllResults()
+          .forEach(result -> {LOGGER.info(result.getName());});
+        
+        LOGGER.info("FAILED TEST CASES");
+        testContext.getFailedTests().getAllResults()
+          .forEach(result -> {LOGGER.info(result.getName());});
+        
+        LOGGER.info(
+          "Test completed on: " + testContext.getEndDate().toString());
+    }  
+}

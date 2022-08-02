@@ -1,0 +1,10 @@
+package cityDetailsPage;
+
+public class CityDetailsPageConstant {
+	public static String lblCityName = "//div[@data-v-3e6e9f12]//h2[contains(text(),%s)]";
+	public static String lblCurrentDate = "//div[@data-v-3e6e9f12]//span[@class='orange-text']";
+	public static String lblCurrentTemp = "//div[@class='current-temp']//span";
+	public static String optCMessure = "//div[@class='switch-container']//div[@class='option' and contains(text(),'Metric')]";
+	public static String optFMessure = "//div[@class='switch-container']//div[@class='option' and contains(text(),'Imperial')]";
+	public static String optLoaded = "//div[@class='switch-container']//div[@class=""]";
+}

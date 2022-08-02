@@ -1,0 +1,35 @@
+package utilities;
+
+import java.io.File;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+public class Log {
+	private static Logger Log = Logger.getLogger(Log.class.getName());
+	
+	public static void loadLogConfiguration() {
+		String logProperties = System.getProperty("user.dir") + File.separator + "log4j.properties";
+		PropertyConfigurator.configure(logProperties);
+	}
+	
+	public static void startTestClass(String testClass) {
+		Log.info("===========================================================");
+		Log.info("**************** EXECUTE CLASS: " + testClass);
+		Log.info("===========================================================");
+	}
+	
+	public static void startTestCase (String testCaseName) {
+		Log.info("**************** START TEST: " + testCaseName);
+	}
+	
+	public static void endTestCase (String testCaseName) {
+		Log.info("**************** END TEST: " + testCaseName);
+	}
+	
+	public static void endTests(String testClass) {
+		Log.info("===========================================================");
+		Log.info("**************** END EXECUTION");
+		Log.info("===========================================================");
+	}
+}

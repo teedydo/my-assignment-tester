@@ -1,0 +1,22 @@
+package homepage;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import utilities.AbstractTest;
+import utilities.WebDriverCustom;
+
+public class AbstractMethod_Homepage extends AbstractTest{
+	private WebDriver driver;
+	
+	public AbstractMethod_Homepage (WebDriver driver) {
+		this.driver = driver;
+	}
+	
+	protected void searchCity (String cityName) {
+		WebElement txbSearch = this.driverCustom.getClickableWebElement("//div[@class='search-container']//input");
+		txbSearch.click();
+		txbSearch.sendKeys("Ho Chi Minh" + Keys.ENTER);
+	}
+}

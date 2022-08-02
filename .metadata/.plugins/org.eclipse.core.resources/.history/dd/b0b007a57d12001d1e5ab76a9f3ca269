@@ -1,0 +1,10 @@
+package LocatorConstant;
+
+public class HomePageConstant {
+
+	// Xpath for loading dialog
+	public static String dlgLoading = "//div[@aria-label='Loading']";
+	
+	// Xpath for textbox search city
+	public static String txbSearch = "//div[@class='search-container']//input";
+}

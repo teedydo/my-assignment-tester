@@ -1,0 +1,25 @@
+package ExtentReports;
+
+import java.io.File;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
+import utilities.MyDateUtils;
+
+public class ExtentManager {
+	private static ExtentReports extent;
+	
+	public synchronized static ExtentReports getReporter() {
+		if (extent == null) {
+			String workingPath = System.getProperty("user.dir") + File.separator + 
+					"test-output" + File.separator + "report" + File.separator + "extentReports";
+			File dir = new File(workingPath);
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+			String extentReportFile = dir.getAbsolutePath() + File.separator + "ExtentReportResults_" + MyDateUtils.getCurrentTimeString() + ".html";
+			extent = new ExtentReports(extentReportFile, true, DisplayOrder.OLDEST_FIRST);
+		}
+	}
+}
