@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
@@ -99,6 +98,7 @@ public class AbstractTest {
 	 * Wait for some seconds before next action
 	 * @param seconds - time in seconds
 	 */
+	@SuppressWarnings("deprecation")
 	public void waitForSecs(int seconds) {
 		driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
 	}

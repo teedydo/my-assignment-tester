@@ -8,7 +8,6 @@ import utilities.AbstractTest;
 import utilities.WebDriverCustom;
 
 public class Homepage extends AbstractTest{
-	private WebDriver driver;
 	private WebDriverCustom driverCustom;
 	public Homepage (WebDriver driver) {
 		this.driver = driver;

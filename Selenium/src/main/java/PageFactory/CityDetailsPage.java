@@ -7,7 +7,6 @@ import utilities.AbstractTest;
 import utilities.WebDriverCustom;
 
 public class CityDetailsPage extends AbstractTest{
-	private WebDriver driver;
 	private WebDriverCustom driverCustom;
 	public String DATE_FORMAT_IN_DETAILS_PAGE = "MMM dd";
 	
