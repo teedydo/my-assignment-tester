@@ -11,4 +11,17 @@ Step 7: Wait for clone project <br>
 Step 8: Accept default value  <br>
 
 ---How to execute TestNG test suite <br>
+Run /Selenium/src/main/java/utilities/runner/testng.xml with TestNG <br>
 
+--- How to change Execution Browser
+In /Selenium/src/main/java/utilities/AbstractTest.java <br> 
+At utilities.AbstractTest.setUp(ITestContext) method <br>
+Change to: <br>
+Chrome: <br>
+		this.webDriverType = WebDriverType.CHROME; <br>
+Firefox: <br>
+		this.webDriverType = WebDriverType.FIREFOX; <br>
+Install Chrome version 103 and Firefox version 103 before execution <br>
+
+--- Get report from Extend report after execution <br>
+Location: /Selenium/test-output/report/extentReports <br>
